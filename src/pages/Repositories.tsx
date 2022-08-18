@@ -1,5 +1,5 @@
 import React from 'react';
-import { propsRepositories, Repositories } from "../components/repositories/repoList";
+import { Repositories } from "../components/repositories/repoList";
 function RepositoriesPage() {
 	return (
 		<div className="App">

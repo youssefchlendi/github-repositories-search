@@ -1,8 +1,4 @@
-import { propsRepository, Repository } from "./repo";
-
-export type propsRepositories = {
-	repositories: propsRepository[];
-}
+import  { Repository } from "./repo";
 
 export function Repositories(props: { repositories: propsRepositories }) {
 

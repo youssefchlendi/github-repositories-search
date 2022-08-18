@@ -1,8 +1,5 @@
 import React from "react";
-export type AchievementsProps = Array<{
-			image: string,
-			alt: string
-		}>
+
 export const Achievements = (Props:{achievements: AchievementsProps}) => {
 	const AchievmentsList = Props.achievements.map((achievement, index) => {
 		return (

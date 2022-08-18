@@ -1,9 +1,9 @@
 import React from "react";
 
 import Highlights from "./highlights";
-import { BioProps, Bio } from "./bio";
-import {OrganizationProps,Organization} from "./organization";
-import {AchievementsProps, Achievements} from "./achievements";
+import { Bio } from "./bio";
+import { Organization} from "./organization";
+import { Achievements} from "./achievements";
 
 const SidePanel = (
 	props:{

@@ -1,13 +1,6 @@
 import React from "react";
 
-export interface BioProps {
-	bio?: string;
-	name?: string;
-	title?: string;
-	image?: string;
-	followers?: number;
-	following?: number;
-}
+
 
 export const Bio = (props: BioProps) => {
 	return (

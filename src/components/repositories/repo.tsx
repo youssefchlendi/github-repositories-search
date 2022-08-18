@@ -1,11 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-export type propsRepository = {
-	name: string;
-	language: string;
-	stars: number;
-	lastUpdated: string;
-};
+
 
 
 export const Repository = (props: propsRepository) => {
