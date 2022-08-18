@@ -1,26 +1,32 @@
+
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './assets/style/app.scss';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Overview from './pages/Overview';
+import Layout from './components/layout';
+import Repositories from './pages/Repositories';
+import Projects from './pages/Projects';
+import Packages from './pages/Packages';
+import Stars from './pages/Stars';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface IApplicationPageProps { };
+
+const ApplicationPage: React.FC<IApplicationPageProps> = () => {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/:userName" element={<Layout />}>
+					<Route index element={<Overview />} />
+					<Route path="repositories" element={<Repositories />} />
+					<Route path="projects" element={<Projects />} />
+					<Route path="packages" element={<Packages />} />
+					<Route path="stars" element={<Stars />} />
+				</Route>
+			</Routes>
+
+		</BrowserRouter>
+	);
 }
 
-export default App;
+export default ApplicationPage;

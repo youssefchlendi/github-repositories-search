@@ -6,14 +6,14 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.49",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
+    "marked": "^4.0.18",
+    "moment": "^2.29.4",
+    "node-sass": "^4.14.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -39,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "@types/marked": "^4.0.5",
+    "@types/node": "^16.11.49",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "typescript": "^4.7.4"
   }
 }
