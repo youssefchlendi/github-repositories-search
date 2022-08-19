@@ -1,33 +1,47 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
 
 import SidePanel from '../components/sidepanel/sidepanel';
 import TopPanel from '../components/toppanel';
+import Search from '../components/search';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { fetchDataAsync } from '../store/dataSlice';
+
 function Layout() {
+	
+	const {userName}  = useParams<{
+		userName: string;
+	}>();
+	const dispatch = useAppDispatch();
+	const data = useAppSelector(state => state.data.data);
+	const [dataPeresent, setDataPeresent] = useState(false);
+	const loading = useAppSelector(state=>state.data.loading)
+	useEffect(() => {
+		if(!data.bio.name&&!loading){
+			if(userName){
+				dispatch(fetchDataAsync(userName));
+			}
+			console.log(data);
+		}
+	} , [userName]);
+
 	return (
+		<div className="">
+			{loading ? <div>Loading...</div> : <div>done</div>}
+			{/* <Search /> */}
 		<div className="App">
 			<TopPanel />
 			<div className="container">
 
 				<SidePanel
-					bio={
-						{
-							image: "https://avatars.githubusercontent.com/u/74258856?v=4",
-							name: "Mohamed Youssef CHLENDI",
-							title: "youssefchlendi",
-							bio: "Hi! My name is Youssef. I was originally born in Zarzis, Tunisia, and now I’m a Bachelor-IT student at the Higher Institute of Technological Studies of Bizerte.",
-							followers: 25,
-							following: 25,
-
-						}
-					}
-					achievements={[{ alt: "yolo", image: "https://github.githubassets.com/images/modules/profile/achievements/yolo-default.png" }, { alt: "pull shark", image: "https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png" }]}
-					organization={[{ alt: "neoledge", image: "https://avatars.githubusercontent.com/u/108524338?s=64&amp;v=4" }, { alt: "smurfsDev", image: "https://avatars.githubusercontent.com/u/107652380?s=64&amp;v=4" }]}
+					bio={data.bio}
+					organization={data.organizations}
 				/>
 
 				<Outlet></Outlet>
 
 			</div>
+		</div>
 		</div>
 	);
 }

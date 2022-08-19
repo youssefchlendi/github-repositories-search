@@ -1,6 +1,9 @@
 import React from 'react';
+import { useAppSelector } from '../app/hooks';
 import { Repositories } from "../components/repositories/repoList";
 function RepositoriesPage() {
+	const data = useAppSelector(state => state.data.data.repositories);
+
 	return (
 		<div className="App">
 			<form id="filter-repo" >
@@ -39,20 +42,7 @@ function RepositoriesPage() {
 			</form>
 			<div className="horizontalLine"></div>
 			<Repositories repositories={
-				 [
-					{
-						language: 'typescript',
-						lastUpdated: 'yesterday',
-						name: 'github-repositories-search',
-						stars: 1
-					},
-					{
-						language: 'typescript',
-						lastUpdated: 'yesterday',
-						name: 'GithubCommiter ',
-						stars: 0
-					}
-				]
+				 data
 			} />
 			{/* <div className="repo-list">
 				<ul>

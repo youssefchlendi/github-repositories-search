@@ -9,13 +9,14 @@ import Repositories from './pages/Repositories';
 import Projects from './pages/Projects';
 import Packages from './pages/Packages';
 import Stars from './pages/Stars';
-
+import Home from './pages/home';
 export interface IApplicationPageProps { };
 
 const ApplicationPage: React.FC<IApplicationPageProps> = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="/" element={<Home/>} />
 				<Route path="/:userName" element={<Layout />}>
 					<Route index element={<Overview />} />
 					<Route path="repositories" element={<Repositories />} />
