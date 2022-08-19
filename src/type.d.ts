@@ -1,10 +1,9 @@
- interface RepositoryProps  {
+interface RepositoryProps  {
 	name: string;
 	language: string;
 	stars: number;
 	lastUpdated: string;
 };
-
 
 interface OrganizationProps {
 	image: string,
@@ -21,7 +20,7 @@ interface BioProps {
 }
 
 interface Data {
-	repositories: RepositoryProps[];
+	repositories: propsRepository[];
 	organizations: OrganizationProps[];
 	bio: BioProps;
 }
