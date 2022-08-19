@@ -38,8 +38,8 @@ function RepositoriesPage() {
 				</div>
 			</form>
 			<div className="horizontalLine"></div>
-			<Repositories repositories={{
-				repositories: [
+			<Repositories repositories={
+				 [
 					{
 						language: 'typescript',
 						lastUpdated: 'yesterday',
@@ -53,7 +53,7 @@ function RepositoriesPage() {
 						stars: 0
 					}
 				]
-			}} />
+			} />
 			{/* <div className="repo-list">
 				<ul>
 					<li className="repoItem">

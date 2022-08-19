@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 
 
-export const Repository = (props: propsRepository) => {
+export const Repository = (props: RepositoryProps) => {
 	return (
 		<div className="">
 			<div className="topPart">

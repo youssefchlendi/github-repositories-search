@@ -1,23 +1,15 @@
- type propsRepository = {
+ interface RepositoryProps  {
 	name: string;
 	language: string;
 	stars: number;
 	lastUpdated: string;
 };
 
-type AchievementsProps = Array<{
+
+interface OrganizationProps {
 	image: string,
 	alt: string
-}>
-
-type propsRepositories = {
-	repositories: propsRepository[];
 }
-
-type OrganizationProps = Array<{
-	image: string,
-	alt: string
-}>
 
 interface BioProps {
 	bio?: string;
@@ -26,4 +18,10 @@ interface BioProps {
 	image?: string;
 	followers?: number;
 	following?: number;
+}
+
+interface Data {
+	repositories: RepositoryProps[];
+	organizations: OrganizationProps[];
+	bio: BioProps;
 }

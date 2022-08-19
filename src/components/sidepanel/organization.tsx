@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Organization = (props: { organization: OrganizationProps }) => {
+export const Organization = (props: { organization: OrganizationProps[] }) => {
 	const OrganizationList = props.organization.map((organization, index) => {
 		return <img key={index} src={organization.image} alt={organization.alt} width="32" height="32" />
 	});
