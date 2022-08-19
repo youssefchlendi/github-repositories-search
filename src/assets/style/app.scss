@@ -519,3 +519,41 @@ a {
 		height: 100%;
 
 }
+
+.itemList{
+   width: 50%;
+   border: 1px solid #d0d7de;
+   border-radius: 5px;
+   margin: 0 auto;
+   button{
+	background: none;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	width: 100%;
+
+	  text-decoration: none;
+	  color: #212529;
+	  &:hover{
+		 color: white;
+	  }
+   }
+	&Item{
+		// github search result item
+		padding: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #d0d7de;
+		&:hover{
+			background-color: #f8f9fa;
+		}
+		&:last-child{
+			border-bottom: 0;
+		}
+		&:hover{
+			background-color: #074e95;
+		}
+	}
+}
+

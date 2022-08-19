@@ -20,7 +20,6 @@ const initialState: DataState = {
 export  const fetchDataAsync = createAsyncThunk<Data,string>(
 	"data/fetchData",
 	async (userId, thunkApi): Promise<Data> => {
-		console.log(userId);
 		const response = await fetchApi(userId);
 		return response;
 	}

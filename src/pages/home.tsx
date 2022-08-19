@@ -1,7 +1,9 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { JSXElementConstructor, ReactElement, ReactFragment, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import LoadingSpinner from "../components/loading";
 import Search from "../components/search";
 import { Bio } from "../components/sidepanel/bio";
 import { DataInstance, InstanceData } from "../store/dataApi";
@@ -14,29 +16,48 @@ const DataDisplayer = () => {
 	const [dataPeresent, setDataPeresent] = useState(false);
 	const loading = useAppSelector(state=>state.data.loading)
 	const [search, setSearch] = useState("");
+	const [searchResults, setSearchResults] = useState([]);
+	const [itemList,setItemList] = useState((<></>));
+	const  [loadingList,setLoadingList] = useState(false);
 	useEffect(() => {
-		if(!dataPeresent){
-			if(search.length>0){
-				axios.get(`https://api.github.com/users/${search}`)
-					.then(response => {
-						dispatch(fetchDataAsync(search));
-						// router history push
-						redirect(search);
-						setDataPeresent(true);
-					})
-					.catch(()=>{
-						alert("user not found")
-					});
-			}
-			console.log(data);
-		}
-	} , [search]);
+		if (search.length > 0) {
+			setLoadingList(true);
+		axios.get("https://api.github.com/search/users?q="+search).then(res => {
+			setSearchResults(res.data.items);
+			const itdemList= (
+				res.data.items.map((item: { login: string ; }) => {
+					return (
+							<button className="itemListItem" key={item.login} onClick={()=>{if(item.login){
+								fetchData(item.login)
+							}
+							}} >{item.login}</button>
+					);
+				}));
+			setItemList(itdemList);
+			setLoadingList(false);
+
+		})
+	}
+	}, [search])
+	const fetchData= (loginName:string)=>{
+		setLoadingList(true);
+		dispatch(fetchDataAsync(loginName)).then((res)=>{
+			setLoadingList(false);
+			redirect(loginName);
+		});
+	}
 
 	return (
 		<>
+		{loadingList ? <LoadingSpinner/>:''}
 		<Search onClick={(a,b) => {setSearch(b)}}
 		></Search>
-		{loading ? <div>Loading...</div> : <div>done</div>}
+		
+		<div className="itemList">
+		{
+			searchResults.length&&search.length?itemList:<div className="itemListItem">No data found</div>
+		}
+		</div>
 		</>
 	)
 	
