@@ -1,12 +1,9 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { JSXElementConstructor, ReactElement, ReactFragment, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import LoadingSpinner from "../components/loading";
 import Search from "../components/search";
-import { Bio } from "../components/sidepanel/bio";
-import { DataInstance, InstanceData } from "../store/dataApi";
 import { fetchDataAsync } from "../store/dataSlice";
 
 const DataDisplayer = () => {
@@ -36,6 +33,7 @@ const DataDisplayer = () => {
 
 		})
 	}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [search])
 	const fetchData= (loginName:string)=>{
 		setLoadingList(loading);

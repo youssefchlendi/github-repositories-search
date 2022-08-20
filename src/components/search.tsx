@@ -12,11 +12,8 @@ const Search = (props:ClickProps) => {
 
 	useEffect(() => {
 		props.onClick(null,debouncedSearch);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	} , [debouncedSearch]);
-
-	const searchAccount = () => {
-		console.log("searching for " + search);
-	}
 
 	  return (
 	<div className="search-container">

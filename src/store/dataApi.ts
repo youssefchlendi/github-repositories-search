@@ -42,7 +42,7 @@ export function fetchApi(accountName:string,sortBy:string="updated_at"){
 					}
 					Repos =  [];
 					  values[1].map(repo => {
-						(repo.map((rep:{name:string,language:string,stargazers_count:number,updated_at:string}) => {Repos.push({
+						return (repo.map((rep:{name:string,language:string,stargazers_count:number,updated_at:string}) => {return Repos.push({
 							name: rep.name,
 							language: rep.language,
 							stars: rep.stargazers_count,

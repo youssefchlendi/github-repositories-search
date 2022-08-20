@@ -1,11 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { useAppSelector } from '../app/hooks';
 import { Repositories } from "../components/repositories/repoList";
-import { fetchDataAsync } from '../store/dataSlice';
 function RepositoriesPage() {
-	const userName = useParams().userName;
-	const dispatch = useAppDispatch();
 	const data = useAppSelector(state => state.data.data.repositories);
 	const loading = useAppSelector(state => state.data.loading);
 	const [page, setPage] = React.useState(1);
@@ -14,7 +11,6 @@ function RepositoriesPage() {
 	const [paginatedData, setPaginatedData] = React.useState(data);
 	const [filteredData, setFilteredData] = React.useState(data);
 	const [search, setSearch] = React.useState('');
-	const [sort,setSort] = React.useState('lastUpdated')
 	const [language,setLanguage] = React.useState([''])
 	const paginate = () => {
 		const pages = [];
@@ -76,14 +72,13 @@ function RepositoriesPage() {
 	}
 
 	const sortFunc= (e:string)=>{
-		setSort(e);
-		const sortOrder = e=='name'?'asc':'desc';
+		const sortOrder = e==='name'?'asc':'desc';
 		let data = initialData.slice().sort((a,b)=>{
 			if(a[e]>b[e]){
-				return sortOrder=='desc'?-1:1;
+				return sortOrder==='desc'?-1:1;
 			}
 			if(a[e]<b[e]){
-				return sortOrder=='desc'?1:-1;
+				return sortOrder==='desc'?1:-1;
 			}
 			return 0;
 		})	
@@ -93,7 +88,7 @@ function RepositoriesPage() {
 	const filterLanguage = (e:string)=>{
 		setLanguage([e]);
 		if(e!=="All"){
-			setInitialData(filteredData.filter(item => item.language == e));
+			setInitialData(filteredData.filter(item => item.language === e));
 		}else{
 		 searchFunc(search);
 		}
@@ -187,7 +182,7 @@ function RepositoriesPage() {
 				</li>
 				{
 					paginatedData.map((s, index) => {
-						if(index+2===page|| index === page ||index+1==page)
+						if(index+2===page|| index === page ||index+1===page)
 						return (
 							<li
 								key={index + "d"}
@@ -197,6 +192,7 @@ function RepositoriesPage() {
 								{index + 1}
 							</li>
 						)
+						return<></>;
 					})
 				}
 				<li

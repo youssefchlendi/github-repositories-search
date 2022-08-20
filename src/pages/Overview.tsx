@@ -19,7 +19,7 @@ function Overview() {
 				setMarkdown("<div><h1>User has no README</h1></div>");
 			}
 			)
-	}, []);
+	}, [userName]);
 
 	return (
 		<div className="">

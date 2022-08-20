@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 
 const TopPanel = () => {
-	const { userName } = useParams();
 	const Items = [
 		{
 			id: 1,
@@ -26,6 +25,7 @@ const TopPanel = () => {
 	useEffect(() => {
 		const item = Items.find(i => i.link === currentLink.pathname.split("/")[2]);
 		setItem(item ? item : Items[0]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentLink]);
 
 	return (
@@ -33,10 +33,10 @@ const TopPanel = () => {
 			<div className="App">
 		<div className="container">
 
-			<h1 className="leftPart"></h1>
+			<h1 className="leftPart"> </h1>
 			<div className="navMenu">
 				{Items.map((val, index) => (
-					<Link to={val.link} key={index} className={`navItem navItemUnderline ${item.id == val.id ? "active" : ""} `} onClick={() => setItem(val)}>
+					<Link to={val.link} key={index} className={`navItem navItemUnderline ${item.id === val.id ? "active" : ""} `} onClick={() => setItem(val)}>
 						<svg fillRule="evenodd" 
 						 aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className="navItemIcon" dangerouslySetInnerHTML={{ __html: val.svg }}>
 						</svg>
