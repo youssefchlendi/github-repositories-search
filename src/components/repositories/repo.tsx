@@ -1,9 +1,15 @@
-import { useLocation } from "react-router-dom";
-
-
+import { useLocation } from "react-router-dom"; 
+import {Colors} from '../../assets/colors';
 
 
 export const Repository = (props: RepositoryProps) => {
+	const getColor = (index: string):string => {
+		const color = Colors.find(color => color.name === index);
+		if (color)
+			if (color.color)
+				return color.color;
+		return "black";
+	}
 	return (
 		<div className="">
 			<div className="topPart">
@@ -15,7 +21,7 @@ export const Repository = (props: RepositoryProps) => {
 			</div>
 			<div className="bottomPart">
 				<span className="techName">
-					<span style={{ backgroundColor: "#3178c6" }} className="repo-language-color" ></span>
+					<span style={{ backgroundColor: getColor(props.language)  }} className="repo-language-color" ></span>
 					<span >{props.language}</span>
 				</span>
 				<a className="Link--muted mr-3" href="/youssefchlendi/github-repositories-search/stargazers">
