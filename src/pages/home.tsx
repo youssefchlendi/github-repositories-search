@@ -12,8 +12,6 @@ import { fetchDataAsync } from "../store/dataSlice";
 const DataDisplayer = () => {
 	const redirect = useNavigate();
 	const dispatch = useAppDispatch();
-	const data = useAppSelector(state => state.data.data);
-	const [dataPeresent, setDataPeresent] = useState(false);
 	const loading = useAppSelector(state=>state.data.loading)
 	const [search, setSearch] = useState("");
 	const [searchResults, setSearchResults] = useState([]);
@@ -40,9 +38,9 @@ const DataDisplayer = () => {
 	}
 	}, [search])
 	const fetchData= (loginName:string)=>{
-		setLoadingList(true);
+		setLoadingList(loading);
 		dispatch(fetchDataAsync(loginName)).then((res)=>{
-			setLoadingList(false);
+			setLoadingList(loading);
 			redirect(loginName);
 		});
 	}

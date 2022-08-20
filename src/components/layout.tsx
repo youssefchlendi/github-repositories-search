@@ -6,6 +6,7 @@ import TopPanel from '../components/toppanel';
 import Search from '../components/search';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { fetchDataAsync } from '../store/dataSlice';
+import LoadingSpinner from './loading';
 
 function Layout() {
 	
@@ -27,8 +28,7 @@ function Layout() {
 
 	return (
 		<div className="">
-			{loading ? <div>Loading...</div> : <div>done</div>}
-			{/* <Search /> */}
+			{loading ? <LoadingSpinner/>:<></>}
 		<div className="App">
 			<TopPanel />
 			<div className="container">
@@ -37,9 +37,7 @@ function Layout() {
 					bio={data.bio}
 					organization={data.organizations}
 				/>
-
 				<Outlet></Outlet>
-
 			</div>
 		</div>
 		</div>
