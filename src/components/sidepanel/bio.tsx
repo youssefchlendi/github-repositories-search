@@ -5,10 +5,10 @@ import React from "react";
 export const Bio = (props: BioProps) => {
 	return (
 		<div>
-			<div className="avatar-container">
-				<img className="avatar" src={props.image} alt={props.name} />
-			</div>
+			<div id="bottomImage" className="avatar-container">
+				<img  className="avatar" src={props.image} alt={props.name} />
 			<h2 className="name">{props.name}</h2>
+			</div>
 			<h2 className="userName">{props.title}</h2>
 			<p>{props.bio}</p>
 			<div className="followContainer">

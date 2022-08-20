@@ -35,7 +35,7 @@ export function fetchApi(accountName:string,sortBy:string="updated_at"){
 					Bio = {
 						bio: values[0].bio,
 						name: values[0].name,
-						title: values[0].name,
+						title: values[0].login,
 						image: values[0].avatar_url,
 						followers: values[0].followers,
 						following: values[0].following
