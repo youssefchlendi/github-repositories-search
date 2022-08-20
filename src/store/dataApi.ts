@@ -15,7 +15,7 @@ const getData = async (url : string) => {
 	return response.data;
 }
 
-export function fetchApi(accountName:string){
+export function fetchApi(accountName:string,sortBy:string="updated_at"){
 	return new Promise(
 		async (resolve:(result : Data)=>void)=>{
 				let Bio:BioProps = {};
@@ -27,7 +27,7 @@ export function fetchApi(accountName:string){
 				let vRepos : any[] = [];
 				for(let i=1;i<=pages;i++){
 
-					vRepos[i-1] = await getData(`https://api.github.com/users/${accountName}/repos?page=${i}&sort=updated_at`);
+					vRepos[i-1] = await getData(`https://api.github.com/users/${accountName}/repos?page=${i}&sort=${sortBy}`);
 					
 				}
 				let vOrganizations = getData(`https://api.github.com/users/${accountName}/orgs`);

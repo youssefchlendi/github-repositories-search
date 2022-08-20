@@ -20,7 +20,7 @@ function Layout() {
 	useEffect(() => {
 		if(!data.bio.name&&!loading){
 			if(userName){
-				dispatch(fetchDataAsync(userName));
+				dispatch(fetchDataAsync({search:userName}));
 			}
 		}
 	} , [userName]);

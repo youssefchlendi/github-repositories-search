@@ -17,10 +17,10 @@ const initialState: DataState = {
 	  error: ""
 }
 
-export  const fetchDataAsync = createAsyncThunk<Data,string>(
+export  const fetchDataAsync = createAsyncThunk<Data,{search:string,sortBy?:string}>(
 	"data/fetchData",
-	async (userId, thunkApi): Promise<Data> => {
-		const response = await fetchApi(userId);
+	async ({search,sortBy}, thunkApi): Promise<Data> => {
+		const response = await fetchApi(search,sortBy);
 		return response;
 	}
 )

@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
-import { useAppSelector } from '../app/hooks';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { Repositories } from "../components/repositories/repoList";
+import { fetchDataAsync } from '../store/dataSlice';
 function RepositoriesPage() {
+	const userName = useParams().userName;
+	const dispatch = useAppDispatch();
 	const data = useAppSelector(state => state.data.data.repositories);
 	const loading = useAppSelector(state => state.data.loading);
-
 	const [page, setPage] = React.useState(1);
 	const [size, setSize] = React.useState(10);
 	const [initialData, setInitialData] = React.useState(data);
 	const [paginatedData, setPaginatedData] = React.useState(data);
 	const [filteredData, setFilteredData] = React.useState(data);
 	const [search, setSearch] = React.useState('');
+	const [sort,setSort] = React.useState('lastUpdated')
+	const [language,setLanguage] = React.useState([''])
 	const paginate = () => {
 		const pages = [];
 		for (let i = 0; i < initialData.length; i += size) {
@@ -21,21 +26,32 @@ function RepositoriesPage() {
 	}
 	useEffect(() => {
 		if (!loading) {
-			console.log(initialData);
 			if (!initialData.length && !search.length) {
 				setInitialData(data);
 			}
+			recoverLanguage()
 			paginate();
 		}
 	}, [loading, initialData, search]);
 	useEffect(() => {
 		setPage(1);
 		paginate();
+		
 	}, [size]);
 
 	useEffect(() => {
 		// setFilteredData(paginatedData[page - 1]);
 	}, [page]);
+	const recoverLanguage = () => {
+		// recover language from initial data
+		const languages:string[] = [];
+		data.forEach((repo:RepositoryProps) => {
+			if (!languages.includes(repo.language)&&repo.language) {
+				languages.push(repo.language);
+			}
+		});
+		setLanguage(languages);
+	}
 	const previous = () => {
 		if (page > 1) {
 
@@ -59,8 +75,33 @@ function RepositoriesPage() {
 		setSearch(e);
 	}
 
+	const sortFunc= (e:string)=>{
+		setSort(e);
+		const sortOrder = e=='name'?'asc':'desc';
+		let data = initialData.slice().sort((a,b)=>{
+			if(a[e]>b[e]){
+				return sortOrder=='desc'?-1:1;
+			}
+			if(a[e]<b[e]){
+				return sortOrder=='desc'?1:-1;
+			}
+			return 0;
+		})	
+		setInitialData(data);
+	}
+
+	const filterLanguage = (e:string)=>{
+		setLanguage([e]);
+		if(e!=="All"){
+			setInitialData(filteredData.filter(item => item.language == e));
+		}else{
+		 searchFunc(search);
+		}
+	}
+
 	return (
 		<div className="App">
+			{sort}
 			<form id="filter-repo" >
 				<label className="search-field">
 					<input
@@ -94,21 +135,25 @@ function RepositoriesPage() {
 					</label>
 					<label htmlFor="language" className="language-type">
 						Language:
-						<select name="" id="language">
-							{/* {languageOptions} */}
+						<select name="" id="language" onChange={e=>{
+							filterLanguage(e.target.value)
+						}}>
 							<option value="All">All</option>
-						</select>
-					</label>
-					<label className="select-type">
-						Type:
-						<select name="" id="type">
-							{/* {typeOptions} */}
+							{language.map((lang:string)=>{
+								return <option value={lang} key={lang}>{lang}</option>
+							})}
 						</select>
 					</label>
 					<label className="select-type">
 						Sort:
-						<select name="" id="type">
-							{/* {typeOptions} */}
+						<select name="" id="type" onChange={
+							(e)=>{
+								sortFunc(e.target.value)
+							}
+						}>
+							<option value="lastUpdated" selected>Last updated</option>
+							<option value="name">name</option>
+							<option value="stars">stars</option>
 						</select>
 					</label>
 					<button className="btn" onClick={e => e.preventDefault()}>

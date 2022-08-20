@@ -39,7 +39,7 @@ const DataDisplayer = () => {
 	}, [search])
 	const fetchData= (loginName:string)=>{
 		setLoadingList(loading);
-		dispatch(fetchDataAsync(loginName)).then((res)=>{
+		dispatch(fetchDataAsync({search:loginName})).then((res)=>{
 			setLoadingList(loading);
 			redirect(loginName);
 		});
