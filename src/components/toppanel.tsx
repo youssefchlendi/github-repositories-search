@@ -37,9 +37,7 @@ const TopPanel = () => {
 
 				<div className="containerTop">
 					<div id="topLeftPart" className="leftPart ">
-						<div >
 							<img alt="img" className="mini-avatar" width="32px" height="32px" src={data.bio.image}></img><span>{data.bio.title}</span>
-						</div>
 					</div>
 					<div className="navMenu">
 						<div className="navMenuFirst">
