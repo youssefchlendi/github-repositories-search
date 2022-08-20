@@ -55,6 +55,8 @@ a {
 }
 
 .sidepanel-container {
+	position: relative;
+    top: -42px;
 	width: var(--Layout-sidebar-width);
 	grid-column: 1;
 }
@@ -287,7 +289,7 @@ a {
 		}
 
 		.language-type {
-			margin-left: 15px;
+			// margin-left: 15px;
 		}
 	}
 
@@ -632,3 +634,30 @@ a {
 	  }
 	}
   }
+
+  .homeButton{
+	 
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  margin-left: auto;
+		  padding : 4px 8px;
+		  border-radius: 5px;
+		  width: 100%;
+		  height: 100%;
+		  background-color: #21d94b;
+		  color: white;
+		  outline: none;
+		  border: 0;
+		  height: auto;
+		  width: 4rem;
+		  &:hover {
+			background: #3cd05e;
+		  }
+		  &:focus {
+			border: 1px solid #21d94b;
+		  }
+		  &:active {
+			border: 1px solid #28a745;
+		  }
+		}

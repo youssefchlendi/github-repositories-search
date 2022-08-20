@@ -28,8 +28,8 @@ function Layout() {
 	return (
 		<div className="">
 			{loading ? <LoadingSpinner/>:<></>}
-		<div className="App">
 			<TopPanel />
+		<div className="App">
 			<div className="container">
 
 				<SidePanel

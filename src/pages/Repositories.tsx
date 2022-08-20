@@ -71,7 +71,7 @@ function RepositoriesPage() {
 	}
 
 	const searchFunc = (e: string) => {
-		setInitialData(data.filter(item => item.name.includes(e)));
+		setInitialData(data.filter(item => item.name.toLowerCase().includes(e.toLowerCase())));
 		setSearch(e);
 	}
 
@@ -101,7 +101,6 @@ function RepositoriesPage() {
 
 	return (
 		<div className="App">
-			{sort}
 			<form id="filter-repo" >
 				<label className="search-field">
 					<input
@@ -156,9 +155,6 @@ function RepositoriesPage() {
 							<option value="stars">stars</option>
 						</select>
 					</label>
-					<button className="btn" onClick={e => e.preventDefault()}>
-						New
-					</button>
 				</div>
 			</form>
 
