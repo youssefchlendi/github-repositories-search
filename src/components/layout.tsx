@@ -22,7 +22,6 @@ function Layout() {
 			if(userName){
 				dispatch(fetchDataAsync(userName));
 			}
-			console.log(data);
 		}
 	} , [userName]);
 

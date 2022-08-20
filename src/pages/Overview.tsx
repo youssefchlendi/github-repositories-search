@@ -13,7 +13,6 @@ function Overview() {
 				return response.text()
 			})
 			.then(text => {
-				console.log(text);
 				if(!text.includes("404"))
 				setMarkdown(marked(text));
 				else
