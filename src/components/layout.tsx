@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import SidePanel from '../components/sidepanel/sidepanel';
 import TopPanel from '../components/toppanel';
@@ -34,13 +34,15 @@ function Layout() {
 	const dispatch = useAppDispatch();
 	const data = useAppSelector(state => state.data.data);
 	const loading = useAppSelector(state=>state.data.loading)
+	const [dataloaded, setDataloaded] = useState(false);
 	useEffect(() => {
-		if(!data.bio.name&&!loading){
+		if(!dataloaded){
 			if(userName){
 				dispatch(fetchDataAsync({search:userName}));
+				setDataloaded(true);
 			}
 		}
-	} , [data.bio.name, dispatch, loading, userName]);
+	} , [dataloaded, dispatch, loading, userName]);
 
 	return (
 		<div className="">

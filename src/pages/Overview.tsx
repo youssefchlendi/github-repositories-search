@@ -18,7 +18,7 @@ function Overview() {
 				else
 				setMarkdown("<div><h1>User has no README</h1></div>");
 			}
-			)
+			).catch(()=>{setMarkdown("<div><h1>User has no README</h1></div>")})
 	}, [userName]);
 
 	return (
