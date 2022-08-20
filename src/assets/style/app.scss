@@ -19,16 +19,30 @@ a {
 }
 
 .leftPart {
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
 	width: var(--Layout-sidebar-width);
+	display: flex;
+	align-items: center;
+    margin-left: 24px;
+    margin-top: auto;
+	font-size: 14px;
+	font-weight: 500;
 }
 
 .App {
+	
 	margin-left: 24px;
 	margin-right: 24px;
 	margin-top: 24px;
 }
-
-.container {
+.containerTop{
+	background-color: #f9f9f9;
+	margin:0!important;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+.container,.containerTop{
 	margin-left: 24px;
 	margin-right: 24px;
 
@@ -39,24 +53,35 @@ a {
 	grid-template-columns: auto minmax(0, calc(100% - var(--Layout-sidebar-width) - var(--Layout-gutter)));
 	grid-gap: var(--Layout-gutter);
 }
-
-.avatar {
+.mini-avatar{
+	transition: all 0.2s ease-in-out;
+	margin-right: 1rem;
+	z-index: 1;
 	overflow: hidden;
 	line-height: 1;
 	border: 1px solid #ccc;
-	border-radius: 6px;
 	flex-shrink: 0;
+	background-color: white;
+	border-radius: 50% !important;
+}
+.avatar {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	line-height: 1;
+	border: 1px solid #ccc;
+	flex-shrink: 0;
+	background-color: white;
 	box-shadow: 0 0 0 1px var(--color-avatar-border);
 	border-radius: 50% !important;
 	height: auto;
 	width: var(--Layout-sidebar-width);
 
-	&-container {}
 }
 
 .sidepanel-container {
 	position: relative;
-    top: -42px;
+	top: -42px;
 	width: var(--Layout-sidebar-width);
 	grid-column: 1;
 }
@@ -108,12 +133,25 @@ a {
 	font-weight: 600;
 	margin-top: 0;
 }
-
+.fixedMenu{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--Layout-sidebar-width);
+	background-color: #fff;
+	z-index: 1;
+}
 .navMenu {
 	display: flex;
 	align-items: center;
 	margin-top: 8px;
+	justify-content: space-between;
 	margin-left: calc(var(--Layout-gutter)*2);
+	&First{
+		display: flex;
+		align-items: center;
+	}
 }
 
 .navItemIcon {
@@ -142,7 +180,6 @@ a {
 	align-items: center;
 }
 
-.navItemUnderline {}
 
 .navItem:active:after,
 .active:after {
@@ -225,9 +262,9 @@ a {
 }
 
 #filter-repo {
-	margin: 0 50px;
 	display: flex;
 	width: 100%;
+	justify-content: space-between;
 	margin-bottom: 16px;
 
 	.input-field {
@@ -259,38 +296,6 @@ a {
 	select,
 	label {
 		margin-right: 10px;
-	}
-
-	.select {
-		display: flex;
-
-		.select-type,
-		.language-type {
-			font-size: 17px;
-			height: 35px;
-			display: inline-block;
-			background: #eff3f6;
-			border: 1px silver solid;
-			border-radius: 5px;
-			padding-left: 10px;
-
-			select {
-				background: #eff3f6;
-				font-weight: bold;
-				height: 100%;
-				border: 0;
-				margin: 0;
-				cursor: pointer;
-
-				option {
-					font-size: 17px;
-				}
-			}
-		}
-
-		.language-type {
-			// margin-left: 15px;
-		}
 	}
 
 	button {
@@ -476,13 +481,14 @@ a {
 }
 
 .search {
-	&-container{
+	&-container {
 		padding: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background-color: #eff3f6;
 	}
+
 	input {
 		width: 100%;
 		border: 1px solid #d0d7de;
@@ -491,11 +497,12 @@ a {
 		font-size: 1.2rem;
 		color: #212529;
 		outline: none;
-		
+
 		&:focus {
 			border-color: #0969da;
 		}
 	}
+
 	button {
 		background: #21d94b;
 		color: white;
@@ -504,56 +511,66 @@ a {
 		border: 0;
 		height: auto;
 		width: 4rem;
+
 		&:hover {
 			background: #3cd05e;
 		}
+
 		&:focus {
 			border: 1px solid #21d94b;
 		}
+
 		&:active {
 			border: 1px solid #28a745;
 		}
 	}
-		display: flex;
-		align-items: stretch;
-		justify-content: center;
-		width: 50%;
-		height: 100%;
+
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	width: 50%;
+	height: 100%;
 
 }
 
-.itemList{
-   width: 50%;
-   border: 1px solid #d0d7de;
-   border-radius: 5px;
-   margin: 0 auto;
-   button{
-	background: none;
-	border: none;
-	cursor: pointer;
-	outline: none;
-	width: 100%;
+.itemList {
+	width: 50%;
+	border: 1px solid #d0d7de;
+	border-radius: 5px;
+	margin: 0 auto;
 
-	  text-decoration: none;
-	  color: #212529;
-	  &:hover{
-		 color: white;
-	  }
-   }
-	&Item{
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		width: 100%;
+
+		text-decoration: none;
+		color: #212529;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	&Item {
 		// github search result item
 		padding: 0.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		border-bottom: 1px solid #d0d7de;
-		&:hover{
+
+		&:hover {
 			background-color: #f8f9fa;
 		}
-		&:last-child{
+
+		&:last-child {
 			border-bottom: 0;
 		}
-		&:hover{
+
+		&:hover {
 			background-color: #074e95;
 		}
 	}
@@ -567,97 +584,103 @@ a {
 	align-items: center;
 	padding-bottom: 2rem;
 	transition: all 0.3s ease-in-out;
+
 	.pagination-item {
-	  padding: 0 12px;
-	  height: 32px;
-	  text-align: center;
-	  margin: auto 4px;
-	  color: rgba(0, 0, 0, 0.87);
-	  display: flex;
-	  box-sizing: border-box;
-	  align-items: center;
-	  letter-spacing: 0.01071em;
-	  border-radius: 16px;
-	  line-height: 1.43;
-	  font-size: 13px;
-	  min-width: 32px;
+		padding: 0 12px;
+		height: 32px;
+		text-align: center;
+		margin: auto 4px;
+		color: rgba(0, 0, 0, 0.87);
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		letter-spacing: 0.01071em;
+		border-radius: 16px;
+		line-height: 1.43;
+		font-size: 13px;
+		min-width: 32px;
 		transition: all 0.3s ease-in-out;
 
-  
-	  &.dots:hover {
-		background-color: transparent;
-		cursor: default;
-	  }
-	  &:hover {
-		background-color: rgba(0, 0, 0, 0.14);
-		cursor: pointer;
-	  }
-  
-	  &-selected {
-		background-color: rgba(0, 0, 0, 0.18);
-	  }
-  
-	  .arrow {
-		&::before {
-		  position: relative;
-		  /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-		  content: '';
-		  /* By using an em scale, the arrows will size with the font */
-		  display: inline-block;
-		  width: 0.4em;
-		  height: 0.4em;
-		  border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-		  border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-		}
-  
-		&.left {
-		  transform: rotate(-135deg) translate(-50%);
-		}
-  
-		&.right {
-		  transform: rotate(45deg);
-		}
-	  }
-  
-	  &-disabled {
-		pointer-events: none;
-  
-		.arrow::before {
-		  border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-		  border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-		}
-  
-		&:hover {
-		  background-color: transparent;
-		  cursor: default;
-		}
-	  }
-	}
-  }
 
-  .homeButton{
-	 
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  margin-left: auto;
-		  padding : 4px 8px;
-		  border-radius: 5px;
-		  width: 100%;
-		  height: 100%;
-		  background-color: #21d94b;
-		  color: white;
-		  outline: none;
-		  border: 0;
-		  height: auto;
-		  width: 4rem;
-		  &:hover {
-			background: #3cd05e;
-		  }
-		  &:focus {
-			border: 1px solid #21d94b;
-		  }
-		  &:active {
-			border: 1px solid #28a745;
-		  }
+		&.dots:hover {
+			background-color: transparent;
+			cursor: default;
 		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.14);
+			cursor: pointer;
+		}
+
+		&-selected {
+			background-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.arrow {
+			&::before {
+				position: relative;
+				/* top: 3pt; Uncomment this to lower the icons as requested in comments*/
+				content: '';
+				/* By using an em scale, the arrows will size with the font */
+				display: inline-block;
+				width: 0.4em;
+				height: 0.4em;
+				border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+				border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+			}
+
+			&.left {
+				transform: rotate(-135deg) translate(-50%);
+			}
+
+			&.right {
+				transform: rotate(45deg);
+			}
+		}
+
+		&-disabled {
+			pointer-events: none;
+
+			.arrow::before {
+				border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+				border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+			}
+
+			&:hover {
+				background-color: transparent;
+				cursor: default;
+			}
+		}
+	}
+}
+
+.homeButton {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+	padding: 4px 8px;
+	border-radius: 5px;
+	width: 100%;
+	height: 100%;
+	background-color: #21d94b;
+	color: white;
+	outline: none;
+	border: 0;
+	height: auto;
+	width: 4rem;
+
+	&:hover {
+		background: #3cd05e;
+	}
+
+	&:focus {
+		border: 1px solid #21d94b;
+	}
+
+	&:active {
+		border: 1px solid #28a745;
+	}
+}
+

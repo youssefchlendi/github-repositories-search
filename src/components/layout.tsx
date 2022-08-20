@@ -7,6 +7,26 @@ import { fetchDataAsync } from '../store/dataSlice';
 import LoadingSpinner from './loading';
 
 function Layout() {
+	useEffect(() => {   
+		window.addEventListener("scroll", listenToScroll);
+		return () => 
+		   window.removeEventListener("scroll", listenToScroll); 
+	  }, [])
+	const listenToScroll = () => {
+	const winScroll = document.body.scrollTop || 
+		document.documentElement.scrollTop;
+	const top = document.getElementById("topLeftPart");
+	const bottom = document.getElementById("bottomImage");
+	if(top&&bottom){
+		if (!(winScroll > bottom.offsetHeight) ) { 
+			top.style.opacity = "0";
+			bottom.style.opacity = "1";
+		} else {
+			top.style.opacity = "1";
+			bottom.style.opacity = "0";
+		}  
+	}
+	};
 	
 	const {userName}  = useParams<{
 		userName: string;

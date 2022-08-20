@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
 
 
 const TopPanel = () => {
@@ -22,35 +23,44 @@ const TopPanel = () => {
 		}];
 	const [item, setItem] = useState<{ id: number; text: string, svg: string, link: string }>(Items[0]);
 	const currentLink = useLocation();
+	const data = useAppSelector(state => state.data.data);
+
 	useEffect(() => {
 		const item = Items.find(i => i.link === currentLink.pathname.split("/")[2]);
 		setItem(item ? item : Items[0]);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentLink]);
 
 	return (
-			<>
-			<div className="App">
-		<div className="container">
+		<>
+			<div className="fixedMenu">
 
-			<h1 className="leftPart"> </h1>
-			<div className="navMenu">
-				{Items.map((val, index) => (
-					<Link to={val.link} key={index} className={`navItem navItemUnderline ${item.id === val.id ? "active" : ""} `} onClick={() => setItem(val)}>
-						<svg fillRule="evenodd" 
-						 aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className="navItemIcon" dangerouslySetInnerHTML={{ __html: val.svg }}>
-						</svg>
-						{val.text}
-					</Link>
-				))}
-				<Link to='/' className="homeButton">
-				Home
-				</Link>
-			</div>
+				<div className="containerTop">
+					<div id="topLeftPart" className="leftPart ">
+						<div >
+							<img alt="img" className="mini-avatar" width="32px" height="32px" src={data.bio.image}></img><span>{data.bio.title}</span>
+						</div>
+					</div>
+					<div className="navMenu">
+						<div className="navMenuFirst">
+
+							{Items.map((val, index) => (
+								<Link to={val.link} key={index} className={`navItem navItemUnderline ${item.id === val.id ? "active" : ""} `} onClick={() => setItem(val)}>
+									<svg fillRule="evenodd"
+										aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" className="navItemIcon" dangerouslySetInnerHTML={{ __html: val.svg }}>
+									</svg>
+									{val.text}
+								</Link>
+							))}
+						</div>
+						<Link to='/' className="homeButton">
+							Home
+						</Link>
+					</div>
 				</div>
-		</div>
-			<div className="horizontalLine"></div>
-</>
+				</div>
+			<div style={{ marginTop: "48px" }} className="horizontalLine"></div>
+		</>
 	)
 }
 export default TopPanel;
