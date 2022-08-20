@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-import { createStore, applyMiddleware, Store } from "redux"
 import { Provider } from "react-redux"
 import { store } from './app/store';
 
