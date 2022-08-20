@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import "./style.scss";
 import React, { useEffect } from 'react';
 import { useAppSelector } from '../app/hooks';
 import { Repositories } from "../components/repositories/repoList";

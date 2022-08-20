@@ -1,0 +1,33 @@
+.stat {
+	font-weight: 600;
+	margin-right: 4px;
+}
+
+.follow {
+	font-size: 14px;
+	margin-right: 4px;
+	display: flex;
+	align-items: center;
+	color: #57606a
+}
+
+.bioIcon {
+	font-weight: 200;
+	margin-top: 0;
+	height: 16px;
+	width: 16px;
+	margin-right: 4px;
+}
+.userName {
+	color: #666;
+	font-size: 20px;
+	font-weight: 200;
+	margin-top: 0;
+}
+
+.followContainer {
+	display: flex;
+	align-items: center;
+	margin-top: 8px;
+}
+

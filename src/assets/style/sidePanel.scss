@@ -1,0 +1,23 @@
+.sidepanel-container {
+	position: relative;
+	top: -42px;
+	width: var(--Layout-sidebar-width);
+	grid-column: 1;
+}
+
+.avatar {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	line-height: 1;
+	border: 1px solid #ccc;
+	flex-shrink: 0;
+	background-color: white;
+	box-shadow: 0 0 0 1px var(--color-avatar-border);
+	border-radius: 50% !important;
+	height: auto;
+	width: var(--Layout-sidebar-width);
+
+}
+
+
