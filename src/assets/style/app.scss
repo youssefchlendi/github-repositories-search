@@ -150,3 +150,17 @@ a {
 	}
 }
 
+
+@media (max-width: 768px) {
+	.container,.containerTop{
+		display: block;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.search {
+		width: 100%;
+	}
+	.itemList {
+		width: 100%;
+	}
+}

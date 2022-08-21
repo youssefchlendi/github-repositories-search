@@ -10,3 +10,23 @@
 		max-width: 100%;
 	}
 }
+
+@media (max-width: 768px) {
+	.mdBody {
+		li,ul{
+			list-style: none;
+		}
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+		
+		img{
+			width: 100%;
+		}
+		p{
+			display: flex;
+			justify-content:space-evenly ;
+		}
+	}
+
+}

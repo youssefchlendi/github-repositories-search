@@ -21,3 +21,25 @@
 }
 
 
+@media (max-width: 768px) {
+	.sidepanel-container {
+		width: 100%;
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		text-align: left;
+	}
+	.avatar{
+		width: 100%;
+	}
+	.avatar-container {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		text-align: left;
+	}
+	#bottomImage{
+		width: 30%;
+	}
+}
