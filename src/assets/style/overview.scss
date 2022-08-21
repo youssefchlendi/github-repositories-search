@@ -5,13 +5,16 @@
 	margin-top: 1.5rem;
 	max-width: 1012px;
 	margin-right: auto;
-	color: var(--text-secondary);
+	color: var(--text-secondary)!important;
 	margin-left: calc(var(--Layout-gutter)*2);
 	> img {
 		max-width: 100%;
 	}
 	img{
 		max-width: 100%;
+	}
+	a {
+		color: var(--text-secondary);
 	}
 }
 
