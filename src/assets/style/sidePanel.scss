@@ -1,8 +1,11 @@
 .sidepanel-container {
-	position: relative;
-	top: -42px;
 	width: var(--Layout-sidebar-width);
 	grid-column: 1;
+}
+.avatar-container{
+	position: relative!important;
+	z-index: 123;
+
 }
 
 .avatar {

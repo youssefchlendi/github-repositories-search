@@ -8,46 +8,62 @@ import LoadingSpinner from './loading';
 function Layout() {
 	let initialDistance = 0;
 	const loading = useAppSelector(state => state.data.loading)
-	
+	const [sizeChanged, setSizeChanged] = useState(false);
 	useEffect(() => {
+		window.addEventListener("resize", ()=>{listenToScroll();setSizeChanged(true)});
 		window.addEventListener("scroll", listenToScroll);
-		return () =>
+		return () => {
+			window.removeEventListener("resize",()=> {listenToScroll();setSizeChanged(true)});
 			window.removeEventListener("scroll", listenToScroll);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loading])
 	const listenToScroll = () => {
+		console.log(sizeChanged);
 		const winScroll = document.body.scrollTop ||
-			document.documentElement.scrollTop;
+		document.documentElement.scrollTop;
 		const top = document.getElementById("topLeftPart");
 		const bottom = document.getElementById("bottomImage");
 		const topContainer = document.getElementsByClassName("fixedMenu")[0] as HTMLElement;
 		const navMenu = document.getElementsByClassName("navMenu")[0] as HTMLElement;
 		const homeButton = document.getElementsByClassName("homeButton")[0] as HTMLElement;
-		if (top && bottom && topContainer) {
-			if (!(winScroll > bottom.offsetHeight)) {
-				top.style.opacity = "0";
-				bottom.style.opacity = "1";
-			} else {
-				top.style.opacity = "1";
-				bottom.style.opacity = "0";
+		console.log(initialDistance);
+		if (window.innerWidth < 768) {
+			if (!initialDistance||sizeChanged) {
+				window.scrollTo(0, 0);
+				initialDistance = topContainer.offsetTop;
+				setSizeChanged(false);
 			}
-			if(!initialDistance) {
-				initialDistance = topContainer.offsetTop-topContainer.offsetHeight;
+			if (topContainer) {
+				if (initialDistance - 8 < winScroll) {
+					homeButton.style.display = "block";
+					topContainer.style.position = "fixed";
+					topContainer.style.top = "0";
+					topContainer.style.marginTop = "0";
+					navMenu.style.marginTop = "0";
+				} else {
+					homeButton.style.display = "none";
+					topContainer.style.position = "relative";
+					topContainer.style.top = "0";
+					topContainer.style.marginTop = "8px";
+					navMenu.style.marginTop = "8px";
+				}
 			}
-			if (initialDistance-8 < winScroll) {
-				console.log("scrolled");
-				homeButton.style.display = "block";
-				topContainer.style.position = "fixed";
-				topContainer.style.top = "0";
-				topContainer.style.marginTop = "0";
-				navMenu.style.marginTop="0";
-			} else { 
-				homeButton.style.display = "none";
-				topContainer.style.position = "relative";
-				topContainer.style.top = "0";
-				topContainer.style.marginTop = "8px";
-				navMenu.style.marginTop="8px";
+		} else {
+			if (top && bottom) {
+
+				if (!(winScroll > bottom.offsetHeight)) {
+					top.style.opacity = "0";
+					bottom.style.opacity = "1";
+				} else {
+					top.style.opacity = "1";
+					bottom.style.opacity = "0";
+				}
 			}
+			topContainer.style.position = "fixed";
+			topContainer.style.top = "0";
+			homeButton.style.display = "block";
+			topContainer.style.marginTop = "0";
 		}
 	};
 
