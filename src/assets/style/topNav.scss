@@ -1,6 +1,6 @@
 .homeButton {
 
-	display: flex;
+	display: bone;
 	align-items: center;
 	justify-content: center;
 	margin-left: auto;
@@ -148,7 +148,8 @@
 	.fixedMenu {
 		height: 0;
 	}
-	.homButton{
+	.homeButton{
+		display: flex;
 		&Text{
 			display:block;
 		}

@@ -69,6 +69,7 @@ function RepositoriesPage() {
 
 	const searchFunc = (e: string) => {
 		setInitialData(data.filter(item => item.name.toLowerCase().includes(e.toLowerCase())));
+		onPageChange(1);
 		setSearch(e);
 	}
 
@@ -83,6 +84,7 @@ function RepositoriesPage() {
 			}
 			return 0;
 		})
+		onPageChange(1);
 		setInitialData(data);
 	}
 
@@ -93,6 +95,7 @@ function RepositoriesPage() {
 		} else {
 			searchFunc(search);
 		}
+		onPageChange(1);
 	}
 
 	return (

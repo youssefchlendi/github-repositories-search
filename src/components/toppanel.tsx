@@ -64,8 +64,8 @@ const TopPanel = () => {
 								}>{
 									theme === "light" ? <FaLightbulb /> : <FaMoon />
 								}</span>
-						<Link to='/' className="homeButton absolutFab">
-							<span className="homeButtonText">
+						<Link to='/' className="homeButton absolutFab" style={{display:"none"}}>
+							<span className="homeButtonText"  >
 								 Home
 								</span>
 								<FaHome className="homeButtonIcon" />
