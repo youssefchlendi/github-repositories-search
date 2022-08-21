@@ -4,41 +4,35 @@ import { useAppSelector } from '../app/hooks';
 import { Repositories } from "../components/repositories/repoList";
 import SelectMenu from "../components/repositories/selectMenu";
 function RepositoriesPage() {
+	// get data from store
 	const data = useAppSelector(state => state.data.data.repositories);
+	// get loading state
 	const loading = useAppSelector(state => state.data.loading);
+	// create page state
 	const [page, setPage] = React.useState(1);
+	// create size state
 	const [size, setSize] = React.useState(10);
+	// create initial data state
 	const [initialData, setInitialData] = React.useState(data);
+	// create paginated data state
 	const [paginatedData, setPaginatedData] = React.useState(data);
+	// create filter data state
 	const [filteredData, setFilteredData] = React.useState(data);
+	// create search data state
 	const [search, setSearch] = React.useState('');
+	// create language state will contain the repositories languages
 	const [language, setLanguage] = React.useState([''])
+	// paginate method
 	const paginate = () => {
 		const pages = [];
+		// loop through data and create pages array using size
 		for (let i = 0; i < initialData.length; i += size) {
 			pages.push(initialData.slice(i, i + size));
 		}
 		setFilteredData(pages[page - 1]);
 		setPaginatedData(pages);
 	}
-	useEffect(() => {
-		if (!loading) {
-			if (!initialData.length && !search.length) {
-				setInitialData(data);
-			}
-			recoverLanguage()
-			paginate();
-		}
-	}, [loading, initialData, search]);
-	useEffect(() => {
-		setPage(1);
-		paginate();
-
-	}, [size]);
-
-	useEffect(() => {
-		// setFilteredData(paginatedData[page - 1]);
-	}, [page]);
+	// get all repositories languages
 	const recoverLanguage = () => {
 		// recover language from initial data
 		const languages: string[] = ["All"];
@@ -49,6 +43,7 @@ function RepositoriesPage() {
 		});
 		setLanguage(languages);
 	}
+	//  previous page
 	const previous = () => {
 		if (page > 1) {
 
@@ -56,23 +51,25 @@ function RepositoriesPage() {
 			setPage(page - 1);
 		}
 	}
+	// next page
 	const next = () => {
 		if (page < paginatedData.length) {
 			setFilteredData(paginatedData[page]);
 			setPage(page + 1);
 		}
 	}
+	// change to page
 	const onPageChange = (page: number) => {
 		setFilteredData(paginatedData[page - 1]);
 		setPage(page);
 	}
-
+	// filter data using search
 	const searchFunc = (e: string) => {
 		setInitialData(data.filter(item => item.name.toLowerCase().includes(e.toLowerCase())));
 		onPageChange(1);
 		setSearch(e);
 	}
-
+	// sort data using name, stars, lastUpadted
 	const sortFunc = (e: string) => {
 		const sortOrder = e === 'name' ? 'asc' : 'desc';
 		let data = initialData.slice().sort((a, b) => {
@@ -87,7 +84,7 @@ function RepositoriesPage() {
 		onPageChange(1);
 		setInitialData(data);
 	}
-
+	// filter data using language
 	const filterLanguage = (e: string) => {
 		setLanguage([e]);
 		if (e !== "All") {
@@ -97,7 +94,24 @@ function RepositoriesPage() {
 		}
 		onPageChange(1);
 	}
+	// set initial data
+	useEffect(() => {
+		// if completed loading set initial data to data
+		if (!loading) {
+			if (!initialData.length && !search.length) {
+				setInitialData(data);
+			}
+			recoverLanguage()
+			paginate();
+		}
+	}, [loading, initialData, search]);
+	// on size change paginate and go to page 1
+	useEffect(() => {
+		setPage(1);
+		paginate();
 
+	}, [size]);
+	
 	return (
 		<div className="App">
 			<form id="filter-repo" >
@@ -131,13 +145,6 @@ function RepositoriesPage() {
 			{loading ? "loading" : <Repositories repositories={
 				filteredData ? filteredData : []
 			} />}
-			{/* <div className="repo-list">
-				<ul>
-					<li className="repoItem">
-						<Repository language='typescript' lastUpdated='yesterday' name='github-repositories-search' stars={1}  ></Repository>
-					</li>
-				</ul>
-			</div> */}
 			<ul
 				className='pagination-container'
 			>
@@ -156,6 +163,7 @@ function RepositoriesPage() {
 				</li>
 				{
 					paginatedData.map((s, index) => {
+						// show only current page and previous and next page
 						if (index + 2 === page || index === page || index + 1 === page)
 							return (
 								<li

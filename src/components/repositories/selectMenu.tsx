@@ -1,14 +1,16 @@
-const SelectMenu = (props: { button: string, position:string, items: { value: string, name: string }[], callBack: Function }) => {
+const SelectMenu = (props: { button: string, position: string, items: { value: string, name: string }[], callBack: Function }) => {
 	return (
 		<details id={props.button} className="details">
-			<summary className="summary" onClick={()=>{
-				document.querySelectorAll(".details")?.forEach((e:any)=>{
-					return e.id !== props.button?e.removeAttribute("open"):"";
-			})}}>
+			<summary className="summary" onClick={() => {
+				// hide other select menus
+				document.querySelectorAll(".details")?.forEach((e: any) => {
+					return e.id !== props.button ? e.removeAttribute("open") : "";
+				})
+			}}>
 				{props.button}
 				<span className="dropDownCaret"></span>
 			</summary>
-			<div className={"selectMenu "+props.position}>
+			<div className={"selectMenu " + props.position}>
 				<div className="selectMenuModal">
 					<header className="selectMenu-header"><span >Select {props.button}</span><span className="selectMenuDismiss"
 						onClick={() => { document.getElementById(props.button)?.removeAttribute("open"); }}

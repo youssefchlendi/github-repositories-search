@@ -1,3 +1,4 @@
+// all global types
 interface RepositoryProps  {
 	name: string;
 	language: string;

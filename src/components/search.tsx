@@ -6,8 +6,9 @@ interface ClickProps {
 	onClick: (event: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLInputElement>|null,search:string) => void;
 }
 const Search = (props:ClickProps) => {
-	
+	// search state
 	const [search, setSearch] = useState("");
+	// add latency to search
 	const [debouncedSearch] = useDebounce(search, 1000);
 
 	useEffect(() => {

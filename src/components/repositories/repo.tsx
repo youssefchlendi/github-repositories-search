@@ -3,6 +3,7 @@ import {Colors} from '../../assets/colors';
 
 
 export const Repository = (props: RepositoryProps) => {
+	// function that return the color of language if it exists in Colors, else return "black"
 	const getColor = (index: string):string => {
 		const color = Colors.find(color => color.name === index);
 		if (color)
@@ -14,6 +15,9 @@ export const Repository = (props: RepositoryProps) => {
 		<div className="">
 			<div className="topPart">
 				<h3 className="wb-break-all">
+					{/* link to the real repo,
+						useLocation().pathname.split("/")[1] is the name of user
+					*/}
 					<a className="repoLink" href={`https://www.github.com/${useLocation().pathname.split("/")[1]}/${props.name}`} >
 						{props.name}</a>
 					<span></span><span className="Label Label--secondary v-align-middle ml-1 mb-1">Public</span>
