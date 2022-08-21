@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 import { useAppSelector } from "../app/hooks";
-
+import {FaLightbulb,FaMoon,FaHome} from "react-icons/fa";
 
 const TopPanel = () => {
 	const Items = [
@@ -30,6 +31,12 @@ const TopPanel = () => {
 		setItem(item ? item : Items[0]);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentLink]);
+	const [theme, setTheme] = useLocalStorage('theme', document.documentElement.getAttribute('data-theme')??'dark');
+	const switchTheme = () => {
+		setTheme(theme === "light" ? "dark" : "light");
+		document.documentElement.setAttribute("data-theme", theme);
+
+	}
 
 	return (
 		<>
@@ -51,13 +58,23 @@ const TopPanel = () => {
 								</Link>
 							))}
 						</div>
-						<Link to='/' className="homeButton">
-							Home
+						<div className="navMenuSecond">
+								<span className="btn" onClick={
+									()=>switchTheme()
+								}>{
+									theme === "light" ? <FaLightbulb /> : <FaMoon />
+								}</span>
+						<Link to='/' className="homeButton absolutFab">
+							<span className="homeButtonText">
+								 Home
+								</span>
+								<FaHome className="homeButtonIcon" />
 						</Link>
+						</div>
 					</div>
 				</div>
 				</div>
-			<div style={{ marginTop: "48px" }} className="horizontalLine"></div>
+			<div style={{ marginTop: "68px" }} className="horizontalLine"></div>
 		</>
 	)
 }

@@ -1,6 +1,7 @@
 .sidepanel-container {
 	width: var(--Layout-sidebar-width);
 	grid-column: 1;
+	color: var(--color-btn-text);
 }
 .avatar-container{
 	position: relative!important;
@@ -15,7 +16,7 @@
 	line-height: 1;
 	border: 1px solid #ccc;
 	flex-shrink: 0;
-	background-color: white;
+	background-color: var(--color-canvas-overlay);
 	box-shadow: 0 0 0 1px var(--color-avatar-border);
 	border-radius: 50% !important;
 	height: auto;
@@ -36,6 +37,7 @@
 		width: 100%;
 	}
 	.avatar-container {
+		justify-content: space-around;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -44,5 +46,6 @@
 	}
 	#bottomImage{
 		width: 30%;
+		margin-right: 10px;
 	}
 }

@@ -110,15 +110,15 @@ function RepositoriesPage() {
 					/>
 				</label>
 				<div className="select">
-					<SelectMenu button="Per page" items={[{name:"5",value:"5"},{name:"10",value:"10"},{name:"20",value:"20"},{name:"100",value:"100"}]}
+					<SelectMenu position="left" button="Per page" items={[{name:"5",value:"5"},{name:"10",value:"10"},{name:"20",value:"20"},{name:"100",value:"100"}]}
 					callBack={(e: string) => { setSize(parseInt(e)) }} />
-					<SelectMenu button="Language" callBack={(a:string)=>{filterLanguage(a)}} 
+					<SelectMenu position="center" button="Language" callBack={(a:string)=>{filterLanguage(a)}} 
 					items={language.map((lang: string) => {
 							return {name:lang,value:lang}
 						})
 					}
 					/>
-					<SelectMenu button="Sort"  items={[{name:"Last update",value:"updated_at"},{name:"name",value:"name"},{name:"stars",value:"stars"}]} callBack={(a:string)=>{
+					<SelectMenu position="right" button="Sort"  items={[{name:"Last update",value:"lastUpdated"},{name:"name",value:"name"},{name:"stars",value:"stars"}]} callBack={(a:string)=>{
 						sortFunc(a)
 					}} />
 				</div>

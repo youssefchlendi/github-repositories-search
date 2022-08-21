@@ -8,7 +8,7 @@ interface ClickProps {
 const Search = (props:ClickProps) => {
 	
 	const [search, setSearch] = useState("");
-	const [debouncedSearch] = useDebounce(search, 2500);
+	const [debouncedSearch] = useDebounce(search, 1000);
 
 	useEffect(() => {
 		props.onClick(null,debouncedSearch);

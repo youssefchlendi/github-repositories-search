@@ -17,15 +17,18 @@
 		border: 1px solid;
 		border-radius: 6px;
 		appearance: none;
-		color: #24292f;
-		background-color: #f6f8fa;
-		border-color: #1b1f2426;
+		color: var(--color-btn-text);
+		background-color: var(--color-btn-bg);
+		border-color: var(--text-muted);
 		list-style: none;
 
 		&:hover {
-			background-color: #dbddde;
-			border-color: #1b1f24;
+			border-color: var(--border-btn);
 		}
+		&:focus {
+			border-color: var(--border-btn);
+		}
+
 
 		transition: all 0.2s ease-in-out;
 
@@ -40,7 +43,7 @@
 			border-right-color: transparent;
 			border-bottom-color: transparent;
 			border-left-color: transparent;
-			color: #24292f;
+			color: var(--color-btn-text);
 		}
 	}
 
@@ -59,6 +62,7 @@
 		&Dismiss{
 			pointer-events: auto;
 			cursor: pointer;
+			filter: var(--filter-dismiss);
 		}
 		&Modal {
 			width: 300px;
@@ -66,7 +70,7 @@
 			max-height: 480px;
 			margin: 8px 0 16px 0;
 			font-size: 12px;
-			border: 1px solid #d0d7de;
+			border: 1px solid var(--border);
 			border-radius: 6px;
 			box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
 			position: relative;
@@ -77,7 +81,7 @@
 			overflow: hidden;
 			pointer-events: auto;
 			flex-direction: column;
-			background-color: #ffffff;
+			background-color: var(--color-canvas-overlay);
 		}
 
 		&-header {
@@ -86,7 +90,8 @@
 			flex: none;
 			align-items: center;
 			justify-content: space-between;
-			border-bottom: 1px solid #d8dee4;
+			border-bottom: 1px solid var(--border);
+			color: var(--color-btn-text);
 			font-size: 12px;
 			pointer-events: auto;
 			font-weight: 600;
@@ -100,10 +105,10 @@
 			flex: auto;
 			overflow-x: hidden;
 			overflow-y: auto;
-			background-color: #ffffff;
+			background-color: var(--color-canvas-overlay);
 		}
 		&-item{
-			color: #24292f;
+			color: var(--color-btn-text);
 			display: flex;
 			align-items: center;
 			width: 100%;
@@ -113,11 +118,11 @@
 			overflow: hidden;
 			text-align: left;
 			cursor: pointer;
-			background-color: #ffffff;
+			background-color: var(--color-canvas-overlay);
 			border: 0;
-			border-bottom: 1px solid #d8dee4;
+			border-bottom: 1px solid var(--border);
 			&:hover {
-				background-color: #f6f8fa;
+				background-color: var(--neutral-hover-color);
 			}
 		}
 	}
@@ -134,16 +139,21 @@
 		width: 100%;
 		height: 100%;
 		border-radius: 4px;
-		border: 1px solid #ccc;
+		border: 1px solid var(--border);
 		padding: 8px;
 		transition: all 0.2s ease-in-out;
-
+		background-color: var(--background);
+		color: var(--text-muted);
+		&::placeholder{
+			color: var(--text-muted);
+		}
+		
 		&:focus {
-			border-color: #57606a;
+			border-color: var(--text-accent-fg);
 		}
 
 		&:hover {
-			border-color: #57606a;
+			border-color: var(--text-accent-fg);
 		}
 	}
 
@@ -236,7 +246,6 @@
 		}
 
 		.select {
-			flex-flow: row wrap;
 
 			.language-type,
 			.select-type {

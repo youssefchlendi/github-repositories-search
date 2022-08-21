@@ -10,12 +10,12 @@
 	.repoLink {
 		font-weight: 600;
 		font-size: 20px;
-		color: #0969da;
+		color: var(--text-accent-fg);
 		text-decoration: none;
 	}
 
 	.repoLink:hover {
-		border-bottom: 2px solid #0969da;
+		border-bottom: 2px solid var(--text-accent-fg);
 
 	}
 
@@ -28,8 +28,8 @@
 		white-space: nowrap;
 		border: 1px solid transparent;
 		border-radius: 2em;
-		color: #57606a;
-		border-color: #d0d7de;
+		color: var(--color-btn-text);
+		border-color: var(--border);
 		margin-right: 10px;
 		margin-left: 10px;
 	}
@@ -38,6 +38,7 @@
 		display: flex;
 		align-items: center;
 		margin-bottom: 2rem;
+		color: var(--text-muted);
 	}
 
 	.repo-language-color {
@@ -48,6 +49,10 @@
 		height: 12px;
 		border: 1px solid transparent;
 		border-radius: 50%;
+		margin-right: 0.3rem;
+	}
+	.octicon{
+		margin-right: 0.3rem;
 	}
 
 	.techName {
@@ -55,7 +60,7 @@
 	}
 
 	.Link--muted {
-		color: #6c757d;
+		color: var(--text-muted);
 		margin-right: 2rem;
 		display: flex;
 		align-items: center;
@@ -75,7 +80,7 @@
 		height: 32px;
 		text-align: center;
 		margin: auto 4px;
-		color: rgba(0, 0, 0, 0.87);
+		color: var(--text-secondary);
 		display: flex;
 		box-sizing: border-box;
 		align-items: center;
@@ -110,8 +115,8 @@
 				display: inline-block;
 				width: 0.4em;
 				height: 0.4em;
-				border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-				border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+				border-right: 0.12em solid var(--text-secondary);
+				border-top: 0.12em solid var(--text-secondary);
 			}
 
 			&.left {

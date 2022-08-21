@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import LoadingSpinner from "../components/loading";
 import Search from "../components/search";
@@ -14,10 +15,11 @@ const DataDisplayer = () => {
 	const [searchResults, setSearchResults] = useState([]);
 	const [itemList, setItemList] = useState((<></>));
 	const [loadingList, setLoadingList] = useState(false);
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useLocalStorage('theme', 'dark');
 	const switchTheme = () => {
 		setTheme(theme === "light" ? "dark" : "light");
-		console.log("theme", theme);
+		document.documentElement.setAttribute("data-theme", theme);
+
 	}
 	useEffect(() => {
 		if (search.length > 0) {
@@ -51,23 +53,23 @@ const DataDisplayer = () => {
 
 	return (
 		<>
-			<div className="home" data-theme={theme}>
+			<div className="home">
 
 				{loadingList ? <LoadingSpinner /> : ''}
-				<h1>Search your github repositories</h1>
+				<h1>Type a username to search</h1>
 
-				<Search onClick={(a, b) => { setSearch(b) }}
+				<Search  onClick={(a, b) => { setSearch(b) }}
 				></Search>
 
-				{
-					searchResults.length && search.length ? (
-						<div className="itemList">
-							{itemList}
-						</div>) :
-						<div className="">No data found</div>
-				}
-				<button className="themeSwitchButton" onClick={switchTheme}>Switch theme</button>
-			</div>
+			{
+				searchResults.length && search.length ? (
+					<div className="itemList">
+						{itemList}
+					</div>) :
+					<div className="">No data found</div>
+			}
+			<button className="themeSwitchButton" onClick={switchTheme}>Switch theme</button>
+		</div>
 		</>
 	)
 

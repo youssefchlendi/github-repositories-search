@@ -17,9 +17,8 @@ function Layout() {
 			window.removeEventListener("scroll", listenToScroll);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [loading])
+	}, [loading,])
 	const listenToScroll = () => {
-		console.log(sizeChanged);
 		const winScroll = document.body.scrollTop ||
 		document.documentElement.scrollTop;
 		const top = document.getElementById("topLeftPart");
@@ -27,16 +26,16 @@ function Layout() {
 		const topContainer = document.getElementsByClassName("fixedMenu")[0] as HTMLElement;
 		const navMenu = document.getElementsByClassName("navMenu")[0] as HTMLElement;
 		const homeButton = document.getElementsByClassName("homeButton")[0] as HTMLElement;
-		console.log(initialDistance);
 		if (window.innerWidth < 768) {
 			if (!initialDistance||sizeChanged) {
+				topContainer.setAttribute('style', '');
 				window.scrollTo(0, 0);
 				initialDistance = topContainer.offsetTop;
 				setSizeChanged(false);
 			}
 			if (topContainer) {
 				if (initialDistance - 8 < winScroll) {
-					homeButton.style.display = "block";
+					homeButton.style.display = "flex";
 					topContainer.style.position = "fixed";
 					topContainer.style.top = "0";
 					topContainer.style.marginTop = "0";
@@ -62,7 +61,7 @@ function Layout() {
 			}
 			topContainer.style.position = "fixed";
 			topContainer.style.top = "0";
-			homeButton.style.display = "block";
+			homeButton.style.display = "flex";
 			topContainer.style.marginTop = "0";
 		}
 	};
@@ -85,7 +84,7 @@ function Layout() {
 	return (
 		<div className="">
 			{loading ? <LoadingSpinner /> : <></>}
-			<div className="App">
+			<div className="App" id="mainApp">
 				<div className="container">
 
 					<SidePanel
